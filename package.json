@@ -1,6 +1,6 @@
 {
   "name": "image-server",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A Image Server To Server Your Needs",
   "main": "backend/app.js",
   "repository": "https://github.com/DaTerminators/image-server.git",
