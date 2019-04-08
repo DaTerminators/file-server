@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<meta name="theme-color" content="#209CEE" />
+		<meta property="og:title" content="Image Hosting" />
+		<meta property="og:description" content="Anonymously Upload Images" />
+		<meta property="og:url" content="https://images.ionadev.ml" />
+		<meta property="og:type" content="website" />
+		<meta
+			property="og:image"
+			content="https://static.independent.co.uk/s3fs-public/thumbnails/image/2017/09/12/11/naturo-monkey-selfie.jpg?w968h681"
+		/>
+		<meta property="og:determiner" content="Klasa" />
+		<link
+			rel="shortcut icon"
+			type="image/x-icon"
+			href="https://static.independent.co.uk/s3fs-public/thumbnails/image/2017/09/12/11/naturo-monkey-selfie.jpg?w968h681"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+		/>
+		<link
+			href="https://fonts.googleapis.com/icon?family=Material+Icons"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css?family=Bowlby+One+SC"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css?family=Roboto"
+			rel="stylesheet"
+		/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+		/>
+		<script
+			defer
+			src="https://use.fontawesome.com/releases/v5.8.1/js/all.js"
+		></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+		<style type="text/css">
+			.vertical-align-middle {
+				margin: 0px;
+				padding: 0px;
+				float: left;
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%) translateX(-50%);
+				left: 50%;
+			}
+
+			.btn:hover {
+				background-color: rgb(64, 69, 75);
+			}
+
+			.roboto {
+				font-family: "Roboto", sans-serif;
+				color: #7289da;
+				user-select: none;
+			}
+
+			#dashbots {
+				font-family: "Bowlby One SC", cursive;
+				color: #7289da;
+				user-select: none;
+			}
+
+			#main-card {
+				background-color: #2c2f33;
+			}
+		</style>
+		<title>Image Hosting</title>
+	</head>
+	<body class="blue-grey darken-3">
+		<main>
+			<div class="vertical-align-middle center container">
+				<div class="card-panel hoverable" id="main-card">
+					<h1 class="animated jackInTheBox header" id="dashbots">
+						Image Hosting
+					</h1>
+					<h4 class="header s12 col" id="dashbots">
+						Default Cluster
+					</h4>
+					<h5 class="header col s12 light grey-text">
+						Easily anonymously upload files
+					</h5>
+					<br />
+					<div class="row">
+						<div class="row">
+							<div class="center-align">
+								<form class="col s12">
+									<div class="row">
+										<div class="file-field input-field">
+											<div class="btn">
+												<span>Image</span>
+												<input
+													id="fileupload"
+													type="file"
+													name="files[]"
+													required
+												/>
+											</div>
+											<div
+												class="file-path-wrapper indigo-text"
+											>
+												<input
+													class="file-path validate indigo-text"
+													type="text"
+												/>
+											</div>
+										</div>
+										<br />
+										<div class="input-field col s12">
+											<input
+												disabled
+												value="URL Will Be Here"
+												id="disabledOP"
+												type="text"
+												class="validate indigo-text"
+											/>
+											<label
+												class="white-text"
+												for="disabled"
+												>URL:
+											</label>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<script type="text/javascript">
+			$(function() {
+				$("#fileupload").fileupload({
+					url: "http://<the_aws_id>:3000/api/upload",
+					dataType: "json",
+					done: function(e, data) {
+                        // For single-file upload
+                        console.log(data.result)
+						if (data.result.success === true) {
+							var disabled = document.getElementById(
+								"disabledOP"
+							);
+							disabled.value = `http://<the_aws_id>:3000/documents/${
+								data.result.files[0].filename
+							}`;
+						}
+					}
+				});
+			});
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.19.2/js/vendor/jquery.ui.widget.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.19.2/js/jquery.iframe-transport.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.19.2/js/jquery.fileupload.min.js"></script>
+	</body>
+</html>
