@@ -3,7 +3,6 @@
  * An Image Server Where You Just Upload Files And It Stores it into the server.
 
 
-
 ## To Do
 ---
  * A More Explainatory Readme
